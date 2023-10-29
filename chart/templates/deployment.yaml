@@ -1,21 +1,23 @@
+---
 apiVersion: apps/v1
-kind: Deployment 
-metadata: 
-  name: {{ .Values.name }}        # i27-eureka-dev
-spec: 
-  replicas: {{ .Values.replicas.default }}
+kind: Deployment
+metadata:
+  name:
+    "{ .Values.name }": null
+spec:
+  replicas:
+    "{ .Values.replicas.default }": null
   selector:
     matchLabels:
-      name: {{ .Values.fullname }}
+      name:
+        "{ .Values.fullname }": null
   template:
     metadata:
       labels:
-        name: {{ .Values.fullname }}
+        name:
+          "{ .Values.fullname }": null
     spec:
       containers:
-        - name: {{ .Values.name }} 
+        - name:
+            "{ .Values.name }": null
           image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
-
-
-
-# commented
