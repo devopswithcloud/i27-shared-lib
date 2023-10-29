@@ -1,7 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment 
 metadata: 
-  name: {{ .Values.name }}        # i27-eureka-dev
+  name: {{ .Values.name }}  
+  label:
+    name: {{ .Values.name }}     
 spec: 
   replicas: {{ .Values.replicas.default }}
   selector:
@@ -15,7 +17,3 @@ spec:
       containers:
         - name: {{ .Values.name }} 
           image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
-
-
-
-# commented
