@@ -1,20 +1,19 @@
 apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: new-deploy
+kind: Deployment 
+metadata: 
+  name: {{ .Values.name }}
   labels:
-    app: account
+    name: {{ .Values.name }}
 spec:
+  replicas: {{ .Values.replicas.default }}
   selector:
     matchLabels:
-      env: prod
-  replicas: 1
+      name: {{ .Values.fullname }}
   template:
     metadata:
-      name: new-deploy-pod
       labels:
-        env: prod
+        name: {{ .Values.fullname }}
     spec:
       containers:
-      - image: nginx
-        name: prodnginx
+        - name: {{ .Values.name }}
+          image: "{{ .Values.image.name}}:{{ .Values.image.tag}}"
