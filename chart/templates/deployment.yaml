@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment 
 metadata: 
@@ -8,12 +9,15 @@ spec:
   replicas: {{ .Values.replicas.default }}
   selector:
     matchLabels:
-      name: {{ .Values.fullname }}
+      name:
+        "{ .Values.fullname }": null
   template:
     metadata:
       labels:
-        name: {{ .Values.fullname }}
+        name:
+          "{ .Values.fullname }": null
     spec:
       containers:
-        - name: {{ .Values.name }} 
+        - name:
+            "{ .Values.name }": null
           image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
