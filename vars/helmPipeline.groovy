@@ -64,6 +64,9 @@ def call(Map pipelineParams) {
             DOCKER_CREDS = credentials('dockerhub_creds')
             DOCKER_IMAGE_TAG = sh(script: 'git log -1 --pretty=%h', returnStdout: true).trim()
             K8S_DEV_FILE = "k8s_dev.yaml"
+            HELM_PATH = "${WORKSPACE}/i27-shared-lib/chart"
+            DEV_ENV = "dev"
+            TST_ENV = "tst"
         }
         stages {
             stage ('Checkout') {
@@ -177,7 +180,9 @@ def call(Map pipelineParams) {
                     imageValidation().call()
                     // docker.io/devopswithcloudhub/i27eureka:tagname
                     def docker_image = "${env.DOCKER_HUB}/${env.DOCKER_REPO}:${env.DOCKER_IMAGE_TAG}"
-                    k8s.k8sdeploy("${env.K8S_DEV_FILE}", docker_image)
+                    //k8s.k8sHelmChartDeploy(appName, env, imageTag, helmChartPath)
+                    k8s.k8sHelmChartDeploy("${APPLICATION_NAME}", "${DEV_ENV}", "${DOCKER_IMAGE_TAG}", "${HELM_PATH}")
+                    //k8s.k8sdeploy("${env.K8S_DEV_FILE}", docker_image)
                     // The below line is for Deployment using Docker
                     //dockerDeploy('dev', '5761', '8761').call()
                     // Kubernetes Deployment
