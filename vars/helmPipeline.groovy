@@ -67,11 +67,13 @@ def call(Map pipelineParams) {
         }
         stages {
             stage ('Checkout') {
-                println("Checkout: Git Clone for i27Shared lib Starting")
-                script {
-                    withCredentials([string(credentialsId: 'github_i27_pat', variable: 'token')]) {
-                        // some block
-                        k8s.gitClone("${token}")
+                steps {
+                    println("Checkout: Git Clone for i27Shared lib Starting")
+                    script {
+                        withCredentials([string(credentialsId: 'github_i27_pat', variable: 'token')]) {
+                            // some block
+                            k8s.gitClone("${token}")
+                        }
                     }
                 }
             }
