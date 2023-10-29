@@ -25,7 +25,7 @@ class K8s {
         kubectl apply -f ./.cicd/$fileName
         """
     }
-    def k8sHelmChartDeploy(appName, env, imageTag, helmChartPath) {
+    def k8sHelmChartDeploy(appName, env, repo, imageTag, helmChartPath) {
         jenkins.sh """#!/bin/bash
         echo "********************* Helm Groovy Method from Groovy *********************"
         # Check if helm chart exists
@@ -36,7 +36,7 @@ class K8s {
         echo "Unable to find the chart"
         echo "Installing the chart"
         # appName-env-chart  eg: eureka-dev-chart, checkout-tst-chart
-        helm install ${appName}-${env}-chart -f .cicd/k8s/values_${env}.yaml --set image.tag=${imageTag} ${helmChartPath}
+        helm install ${appName}-${env}-chart -f ${repo}/.cicd/k8s/values_${env}.yaml --set image.tag=${imageTag} ${helmChartPath}
         fi
         """
     }
