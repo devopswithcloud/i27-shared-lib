@@ -35,7 +35,6 @@ class K8s {
         else 
         echo "Unable to find the chart"
         echo "Installing the chart"
-        # appName-env-chart  eg: eureka-dev-chart, checkout-tst-chart
         helm install ${appName}-${env}-chart -f ${repo}/.cicd/k8s/values_${env}.yaml --set image.tag=${imageTag} ${helmChartPath}
         fi
         """
