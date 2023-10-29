@@ -15,8 +15,7 @@ spec:
       containers:
         - name: {{ .Values.name }} 
           image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
-          resources:
-{{ toYaml .Values.resources | indent 10}}
+
 
 
 
