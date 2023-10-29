@@ -25,4 +25,17 @@ class K8s {
         kubectl apply -f ./.cicd/$fileName
         """
     }
+    def k8sHelmChartDeploy() {
+        jenkins.sh """#!/bin/bash
+        echo "********************* Helm Groovy Method from Groovy *********************"
+        """
+    }
+    def gitClone(creds) {
+        jenkins.sh """#!/bin/bash
+        echo "********************* Entering Git Clone Method from Groovy *********************"
+        git clone repourl >>>>master
+        git clone -b master https://${creds}@github.com/devopswithcloud/i27-shared-lib.git
+        ls -la
+        """
+    }
 }

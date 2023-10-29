@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: {{ .Values.name }}        # i27-eureka-dev
+spec: 
+  replicas: {{ .Values.replicas.default }}
+  selector:
+    matchLabels:
+      name: {{ .Values.fullname }}
+  template:
+    metadata:
+      labels:
+        name: {{ .Values.fullname }}
+    spec:
+      containers:
+        - name: {{ .Values.name }} 
+        # what image should i place here ????/
+          image: "{{ .Values.image.name }}":{{ .Values.image.tag }}
+{{ toYaml .Values.resources | indent 10}}
+
+
+
+
