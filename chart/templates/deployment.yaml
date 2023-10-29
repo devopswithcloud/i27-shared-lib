@@ -18,4 +18,4 @@ spec:
       containers:
       - image: nginx
         name: prodnginx
-        # testing 
+        # testing

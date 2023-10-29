@@ -35,7 +35,7 @@ class K8s {
         else 
         echo "Unable to find the chart"
         echo "Installing the chart"
-        helm install ${appName}-${env}-chart -f ${repo}/.cicd/k8s/values_${env}.yaml --set image.tag=${imageTag} ${helmChartPath}
+        #helm install ${appName}-${env}-chart -f ${repo}/.cicd/k8s/values_${env}.yaml --set image.tag=${imageTag} ${helmChartPath}
         fi
         """
     }
