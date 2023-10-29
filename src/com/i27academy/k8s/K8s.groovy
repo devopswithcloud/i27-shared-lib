@@ -29,9 +29,10 @@ class K8s {
         jenkins.sh """#!/bin/bash
         echo "********************* Helm Groovy Method from Groovy *********************"
         # Check if helm chart exists
-        if helm list | grep -q siva-char-new; then 
+        if helm list | grep -q "${appName}-${env}-chart"; then 
         echo "helm chart exists!!!!!"
         echo "Upgrading the chart"
+        helm upgrade ${appName}-${env}-chart -f ${repo}/.cicd/k8s/values_${env}.yaml --set image.tag=${imageTag} ${helmChartPath}
         else 
         echo "Unable to find the chart"
         echo "Installing the chart"
