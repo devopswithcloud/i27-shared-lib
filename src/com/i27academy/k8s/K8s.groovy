@@ -35,6 +35,8 @@ class K8s {
         echo "********************* Entering Git Clone Method from Groovy *********************"
         git clone -b master https://${creds}@github.com/devopswithcloud/i27-shared-lib.git
         ls -la
+        echo "Showing files under i27-shared-lib"
+        ls -la i27-shared-lib
         """
     }
 }
