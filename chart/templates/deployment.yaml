@@ -1,23 +1,17 @@
----
+# yaml file new 
 apiVersion: apps/v1
-kind: Deployment 
+kind: Deployment
 metadata: 
-  name: {{ .Values.name }}  
-  label:
-    name: {{ .Values.name }}     
-spec: 
+  name: {{ .Values.name }}
+spec:
   replicas: {{ .Values.replicas.default }}
   selector:
     matchLabels:
-      name:
-        "{ .Values.fullname }": null
+      name: {{ .Values.fullname }}
   template:
     metadata:
       labels:
-        name:
-          "{ .Values.fullname }": null
-    spec:
-      containers:
-        - name:
-            "{ .Values.name }": null
-          image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+        name: {{ .Values.fullname }}
+    containers:
+    - image: "{{ .Values.image.name}}:{{ .Values.image.tag}}"
+      name: {{ .Values.name }}
