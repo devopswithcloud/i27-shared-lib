@@ -33,7 +33,6 @@ class K8s {
     def gitClone(creds) {
         jenkins.sh """#!/bin/bash
         echo "********************* Entering Git Clone Method from Groovy *********************"
-        git clone repourl >>>>master
         git clone -b master https://${creds}@github.com/devopswithcloud/i27-shared-lib.git
         ls -la
         """
