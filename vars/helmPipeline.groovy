@@ -247,7 +247,8 @@ def call(Map pipelineParams) {
             }
             stage ('Clean') {
                 steps {
-                    cleanWs()
+                    echo "Commenting Out Workspace"
+                    //cleanWs()
                 }
             }
 

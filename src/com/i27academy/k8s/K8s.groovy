@@ -25,9 +25,19 @@ class K8s {
         kubectl apply -f ./.cicd/$fileName
         """
     }
-    def k8sHelmChartDeploy() {
+    def k8sHelmChartDeploy(appName, env) {
         jenkins.sh """#!/bin/bash
         echo "********************* Helm Groovy Method from Groovy *********************"
+        # Check if helm chart exists
+        if helm list | grep -q siva-char-new; then 
+        echo "helm chart exists!!!!!"
+        echo "Upgrading the chart"
+        else 
+        echo "Unable to find the chart"
+        echo "Installing the chart"
+        # appName-env-chart  eg: eureka-dev-chart, checkout-tst-chart
+        helm install ${appName}-${env}-chart  CHARTLOCATION
+        fi
         """
     }
     def gitClone(creds) {
