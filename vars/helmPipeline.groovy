@@ -182,6 +182,7 @@ def call(Map pipelineParams) {
                     def docker_image = "${env.DOCKER_HUB}/${env.DOCKER_REPO}:${env.DOCKER_IMAGE_TAG}"
                     //k8s.k8sHelmChartDeploy(appName, env, imageTag, helmChartPath)
                     //appName, env, repo, imageTag, helmChartPath)
+                    //k8s.auth_login("${env.GKE_CLUSTER_NAME}", "${env.GKE_ZONE}", "${env.GKE_PROJECT}")
                     k8s.k8sHelmChartDeploy("${APPLICATION_NAME}", "${DEV_ENV}", "${WORKSPACE}", "${env.DOCKER_IMAGE_TAG}", "${env.HELM_PATH}")
                     //k8s.k8sdeploy("${env.K8S_DEV_FILE}", docker_image)
                     // The below line is for Deployment using Docker

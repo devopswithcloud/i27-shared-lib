@@ -18,6 +18,7 @@ def call(Map pipelineParams) {
         parameters {
             // enter the namespace name 
             string (name: 'NAMESPACE_NAME', description: "Enter the name of the kubernetes namespace to be created")
+            string (name: 'netpolName', description: "Enter the name of the netpol")
         }
         environment {
             APPLICATION_NAME = "${pipelineParams.appName}"
@@ -68,6 +69,13 @@ def call(Map pipelineParams) {
                 steps {
                     script {
                         k8s.namespace_creation("${params.NAMESPACE_NAME}")
+                    }
+                }
+            }
+            stage('Manifrest Operations') {
+                steps {
+                    script {
+                        println ("Starting Manifest Operations Stage")
                     }
                 }
             }
