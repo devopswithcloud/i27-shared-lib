@@ -19,6 +19,9 @@ def call(Map pipelineParams) {
             // enter the namespace name 
             string (name: 'NAMESPACE_NAME', description: "Enter the name of the kubernetes namespace to be created")
             string (name: 'netpolName', description: "Enter the name of the netpol")
+            booleanParam(name: AddNetworkPolicy,
+                defaultValue: 'false',
+                description: 'Enable this checkbox, if you need a default netpol in your namespace')
         }
         environment {
             APPLICATION_NAME = "${pipelineParams.appName}"
