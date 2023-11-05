@@ -58,6 +58,11 @@ class K8s {
 
         #namespace_name="boutique-dev" # this is our namespace
 
+        # Validate if the namespace name is empty
+        if [ -z "${namespace_name}" ]; then 
+            echo "Error: Namesnapce cant be emtpy"
+            exit 1
+        fi
         # Verify if kubernetes namespace exist 
         if kubectl get namespace "${namespace_name}" &> /dev/null; then
             echo "Your Kubernetes namespace '${namespace_name}' exists"
