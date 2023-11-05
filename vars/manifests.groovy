@@ -30,8 +30,8 @@ def call(Map pipelineParams) {
             SONAR_URL = "http://54.196.85.126:9000"
             // SONAR_TOKEN = "sqa_6c69015b0cd422333397142a660072ec1f4f7fca"
             SONAR_TOKEN = credentials('sonar_creds')
-            POM_VERSION = readMavenPom().getVersion()
-            POM_PACKAGING = readMavenPom().getPackaging()
+            //POM_VERSION = readMavenPom().getVersion()
+            //POM_PACKAGING = readMavenPom().getPackaging()
             DOCKER_HUB = "docker.io/devopswithcloudhub"
             DOCKER_REPO = "i27eurekaproject"
             USER_NAME = "devopswithcloudhub" // UserID for Dockerhub
