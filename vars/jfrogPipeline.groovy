@@ -69,6 +69,7 @@ def call(Map pipelineParams) {
             TST_ENV = "tst"
             JFROG_DOCKER_REGISTRY = "gap2023.jfrog.io"
             JFROG_DOCKER_IMAGE_NAME = "gap2023.jfrog.io/docker/eureka"
+            JFROG_DOCKER_CREDS = credentials('jfrog_creds')
         }
         stages {
             stage ('Checkout') {
@@ -352,6 +353,8 @@ def dockerBuildandPushJfrog() {
             -t ${env.JFROG_DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG} ./.cicd"
         
         echo "******************** Logging to Docker JFROG Registry ********************"
+        sh "docker login ${env.JFROG_DOCKER_REGISTRY} -u ${JFROG_DOCKER_CREDS_USR} -p ${JFROG_DOCKER_CREDS_PSW}"
+        sh "docker push ${env.JFROG_DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}"
         //sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}"
         //sh "docker push ${env.JFROG_DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}"
     }
