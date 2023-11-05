@@ -311,7 +311,8 @@ def imageValidation() {
     return {
         println("Pulling the Docker image")
         try {
-            sh "docker pull ${env.DOCKER_HUB}/${env.DOCKER_REPO}:${env.DOCKER_IMAGE_TAG}"
+            sh "docker pull ${env.JFROG_DOCKER_IMAGE_NAME}:${env.DOCKER_IMAGE_TAG}"
+            //sh "docker pull ${env.DOCKER_HUB}/${env.DOCKER_REPO}:${env.DOCKER_IMAGE_TAG}"
             println ("Pull Success,!!! Deploying !!!!!") 
         }
         catch (Exception e) {
@@ -319,7 +320,8 @@ def imageValidation() {
             println("So, Building the app, creating the image and pushing to registry")
             //buildApp().call()
             docker.buildApp("${env.APPLICATION_NAME}")
-            dockerBuildandPush().call()
+            //dockerBuildandPush().call()
+            dockerBuildandPushJfrog.call()
         }
     }
 }
