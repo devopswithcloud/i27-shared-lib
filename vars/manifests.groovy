@@ -65,8 +65,10 @@ def call(Map pipelineParams) {
                 }
             }
             stage('Create Kubernetes Namespaces') {
-                script {
-                    k8s.namespace_creation("${params.NAMESPACE_NAME}")
+                steps {
+                    script {
+                        k8s.namespace_creation("${params.NAMESPACE_NAME}")
+                    }
                 }
             }
             stage ('Clean') {
