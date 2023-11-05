@@ -19,7 +19,7 @@ def call(Map pipelineParams) {
             // enter the namespace name 
             string (name: 'NAMESPACE_NAME', description: "Enter the name of the kubernetes namespace to be created")
             string (name: 'netpolName', description: "Enter the name of the netpol")
-            string (name: 'addPVC', description: "Enter the PVC size u want, ex: 1gi", defaultValue: "1")
+            string (name: 'ADD_PVC', description: "Enter the PVC size u want in your namespace, ex: 1gi", defaultValue: "1")
             booleanParam(name: 'AddNetworkPolicy',
                 defaultValue: 'false',
                 description: 'Enable this checkbox, if you need a default netpol in your namespace')
