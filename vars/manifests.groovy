@@ -46,7 +46,9 @@ def call(Map pipelineParams) {
             DEV_ENV = "dev"
             TST_ENV = "tst"
             NETPOL_PATH = "./i27-shared-lib/src/com/i27academy/k8s/default/netpol-generic.yaml"
+            NETPOL_NAME = "${params.netpolName}"
         }
+
         stages {
             stage ('Checkout') {
                 steps {
@@ -82,7 +84,13 @@ def call(Map pipelineParams) {
                         println ("Starting Manifest Operations Stage")
                         if (params.AddNetworkPolicy == true) {
                             println("I am in network policy")
-                            k8s.netpolReplace(env.NETPOL_PATH, "${params.NAMESPACE_NAME}")
+                            if (env.NETPOL_NAME == null) {
+                                k8s.netpolReplace(env.NETPOL_PATH, "${params.NAMESPACE_NAME}", "${params.NAMESPACE_NAME}")
+                            }
+                            else {
+                                k8s.netpolReplace(env.NETPOL_PATH, "${params.NAMESPACE_NAME}", "${params.NAMESPACE_NAME}"+'-'+env.NETPOL_NAME)
+                            }
+                            
                         }
                     }
                 }

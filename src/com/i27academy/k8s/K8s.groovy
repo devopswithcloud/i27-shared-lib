@@ -82,11 +82,12 @@ class K8s {
 
        """
     }
-    def netpolReplace(filename, namespace) {
+    def netpolReplace(filename, namespace, replace_netpol_name) {
         jenkins.sh """#!/bin/bash
         fname="${filename}"
         echo "this is from netPol replace groovy method"
         echo \${fname}
+        sed -i 's/network-allow/${replace_netpol_name}' \${fname}
         kubectl apply -f \${fname} -n ${namespace}
         kubectl get netpol -n ${namespace}
         """
