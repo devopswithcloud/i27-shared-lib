@@ -15,7 +15,7 @@ spec:
         name: {{ .Values.fullname }}
     spec:
       imagePullSecrets:
-      - name: jfrog-registry
+      - name: private-jfrog-registry
       containers:
         - name: {{ .Values.name }}
           image: "{{ .Values.image.name}}:{{ .Values.image.tag}}"
