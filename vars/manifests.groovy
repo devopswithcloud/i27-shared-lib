@@ -79,6 +79,9 @@ def call(Map pipelineParams) {
                 steps {
                     script {
                         println ("Starting Manifest Operations Stage")
+                        if (params.AddNetworkPolicy == true) {
+                            println("I am in network policy")
+                        }
                     }
                 }
             }

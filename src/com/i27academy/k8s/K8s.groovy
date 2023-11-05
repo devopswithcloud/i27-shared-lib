@@ -80,4 +80,10 @@ class K8s {
 
        """
     }
+    def netpolReplace(filename) {
+        jenkins.sh"""#!/bin/bash
+        fname="${filename}"
+        echo ${fname}
+        """
+    }
 }
