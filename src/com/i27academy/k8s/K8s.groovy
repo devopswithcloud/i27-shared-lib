@@ -85,6 +85,7 @@ class K8s {
     def netpolReplace(filename) {
         jenkins.sh"""#!/bin/bash
         fname="${filename}"
+        echo "this is from netPol replace groovy method"
         echo ${fname}
         """
     }
