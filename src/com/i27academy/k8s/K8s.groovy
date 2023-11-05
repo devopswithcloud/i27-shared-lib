@@ -49,4 +49,30 @@ class K8s {
         ls -la i27-shared-lib
         """
     }
+    def namespace_creation(namespace_name) { //hello-world
+       jenkins.sh """#!/bin/bash
+        # this method is to create kubernetes namespaces in Our Cluster
+        # Verify if kubernetes namespace exist 
+        # If exists, skip creation
+        # if namespace doesnot exists, create it
+
+        #namespace_name="boutique-dev" # this is our namespace
+
+        # Verify if kubernetes namespace exist 
+        if kubectl get namespace "${namespace_name}" &> /dev/null; then
+            echo "Your Kubernetes namespace '${namespace_name}' exists"
+            exit 0
+        else 
+            echo "Your namespace ${namespace_name} doesnot exists, so createing it!!!!!!!!!!!!!"
+            if kubectl create namespace "${namespace_name}" &> /dev/null; then
+                echo "Your namespace '${namespace_name}' has created sucessfully"
+                exit 0
+            else 
+                echo "Some error, failed to create namespace '${namespace_name}'"
+                exit 1
+            fi
+        fi
+
+       """
+    }
 }
