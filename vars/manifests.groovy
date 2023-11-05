@@ -82,7 +82,7 @@ def call(Map pipelineParams) {
                         println ("Starting Manifest Operations Stage")
                         if (params.AddNetworkPolicy == true) {
                             println("I am in network policy")
-                            k8s.netpolReplace(env.NETPOL_PATH)
+                            k8s.netpolReplace(env.NETPOL_PATH, "${params.NAMESPACE_NAME}")
                         }
                     }
                 }
