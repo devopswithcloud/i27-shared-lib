@@ -48,7 +48,7 @@ class K8s {
         echo "Showing files under i27-shared-lib"
         ls -la i27-shared-lib
         echo "Showing files under src folder"
-        ls -la i27-shared-lib/src/
+        ls -la i27-shared-lib/src/com/i27academy/
         """
     }
     def namespace_creation(namespace_name) { //hello-world
