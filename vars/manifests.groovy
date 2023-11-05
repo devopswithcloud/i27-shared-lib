@@ -45,6 +45,7 @@ def call(Map pipelineParams) {
             HELM_PATH = "${WORKSPACE}/i27-shared-lib/chart"
             DEV_ENV = "dev"
             TST_ENV = "tst"
+            NETPOL_PATH = "test"
         }
         stages {
             stage ('Checkout') {
@@ -81,6 +82,7 @@ def call(Map pipelineParams) {
                         println ("Starting Manifest Operations Stage")
                         if (params.AddNetworkPolicy == true) {
                             println("I am in network policy")
+
                         }
                     }
                 }
